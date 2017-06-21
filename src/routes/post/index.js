@@ -14,6 +14,7 @@ const EnumPostStatus = {
 
 
 const Index = ({ post, dispatch, loading, location }) => {
+  console.log(post)
   const { list, pagination } = post
   const { query = {}, pathname } = location
 

@@ -25,7 +25,7 @@ const List = ({ ...tableProps }) => {
     key: 'description',
   }]
 
-  const dataSource = [{
+/*  const dataSource = [{
     id: 1,
     part_number: 'sample-batch',
     category_name: 'SAMPLE_BATCH',
@@ -43,15 +43,14 @@ const List = ({ ...tableProps }) => {
     category_name: 'SAMPLE_BATCH',
     description: 'Sample Batch contains list of planned source samples',
     uom_name: 'unit',
-  }]
+  }]*/
 
-  console.log(tableProps)
   return (
     <div>
       <Table
+        {...tableProps}
         bordered
         columns={columns}
-        dataSource={dataSource}
         simple
         className={styles.table}
         rowKey={record => record.id}

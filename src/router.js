@@ -66,7 +66,7 @@ const Routers = function ({ history, app }) {
             require.ensure([], require => {
               registerModel(app, require('./models/rt'))
               cb(null, require('./routes/rt/'))
-            }, 'request')
+            }, 'rt')
           },
         }, {
           path: 'UIElement/iconfont',

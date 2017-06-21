@@ -11,7 +11,7 @@ export default modelExtend(pageModel, {
       history.listen(location => {
         if (location.pathname === '/rt') {
           dispatch({ type: 'query', payload: {
-            status: 2,
+            paginate: true,
             ...location.query,
           } })
         }
@@ -28,11 +28,11 @@ export default modelExtend(pageModel, {
         yield put({
           type: 'querySuccess',
           payload: {
-            list: data.data,
+            list: data.results,
             pagination: {
               current: Number(payload.page) || 1,
               pageSize: Number(payload.pageSize) || 10,
-              total: data.total,
+              total: data.count,
             },
           },
         })

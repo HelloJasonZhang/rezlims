@@ -1,26 +1,40 @@
 import React from 'react'
-import * as rtService from '../../services/rt'
+import PropTypes from 'prop-types'
+import { connect } from 'dva'
+import { routerRedux } from 'dva/router'
 import List from './List'
 
-export default class RequestPage extends React.Component {
-  constructor (props) {
-    super(props)
+const Index = ({ rt, dispatch, loading, location }) => {
+  console.log(rt)
+  const { list, pagination } = rt
+  const { query = {}, pathname } = location
 
-    rtService.query().then((data) => {
-      console.log(data[0])
-    })
+  const listProps = {
+    pagination,
+    dataSource: list,
+    loading: loading.effects['rt/query'],
+    onChange (page) {
+      dispatch(routerRedux.push({
+        pathname,
+        query: {
+          ...query,
+          page: page.current,
+          pageSize: page.pageSize,
+        },
+      }))
+    },
+  }
 
-    this.state = {
-      currntRequest: 'test',
-    }
-  }
-  render () {
-    const { currntRequest } = this.state
-    return (
-      <div >
-        Hello, {currntRequest}!
-        <List />
-      </div>
-    )
-  }
+  return (<div className="content-inner">
+    <List {...listProps} />
+  </div>)
 }
+
+Index.propTypes = {
+  rt: PropTypes.object,
+  loading: PropTypes.object,
+  location: PropTypes.object,
+  dispatch: PropTypes.func,
+}
+
+export default connect(({ rt, loading }) => ({ rt, loading }))(Index)
