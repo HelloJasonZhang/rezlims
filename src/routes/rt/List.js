@@ -23,6 +23,7 @@ const List = ({ ...tableProps }) => {
     title: '描叙',
     dataIndex: 'description',
     key: 'description',
+    width: '40%',
   }]
 
 /*  const dataSource = [{

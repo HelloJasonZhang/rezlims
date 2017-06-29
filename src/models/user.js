@@ -16,6 +16,7 @@ export default modelExtend(pageModel, {
     modalType: 'create',
     selectedRowKeys: [],
     isMotion: localStorage.getItem(`${prefix}userIsMotion`) === 'true',
+    resourceCategory: [],
   },
 
   subscriptions: {
